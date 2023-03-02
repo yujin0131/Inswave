@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inswave 기술블로그</title>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/techBlog/main.css"/>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/comm/header.css"/>
+<script>
+
+	
+	/**
+	 * InsFamily 전용 버튼 onclick 이벤트
+	 * @date 
+	 * @memberOf
+	 * @param
+	 * @returns
+	 * @example
+	 */
+	
+	function InsFam_IO(){
+		alert("dd");
+		
+		  
+	}
+
+	function InsFam-write() {
+		
+		
+		
+	}
+
+</script>
+</head>
+<body>
+<body>
+	<header>
+		<div class="header_main">
+			<div class="header-left">
+				<a href="#" class="header-title">
+					<img src="/InswaveApp/images/techBlog/InswaveLogoText.png" class="header-logo-img"></img>
+					<div class="header-logo-text">기술블로그</div>
+				</a>
+			</div>
+			<div class="header-right">
+				<div class="header-link"> 
+					<a href="https://inswave.com/confluence/spacedirectory/view.action" class="header-link-confluence">Confluence</a>
+					<a href="https://inswave.com/jira/secure/Dashboard.jspa" class="header-link-jira">Jira</a>
+					<a href="https://inswave.com/jira/secure/Dashboard.jspa" class="header-link-News">News</a>
+					<div class="header-InsFam">
+						<a class="header-link-InsFam">InsFam</a>
+						<div class="div-InsFam" id="div-InsFam">
+							<div class=InsFam-IO onclick="location.href='../user/signIn.html'">로그인</div>
+							<div class=InsFam-write onclick="InsFam_Write();">글쓰기</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="category">
+	
+	</div>
+	<div class="main">
+		<div class="posts">
+			<div class="tag">
+				<div class="tag-one">app</div>
+			</div>
+		</div>
+		
+		<div class="sidebar">
+			<div class="sidebar-total">
+				<a href="#" class="link-total">분류 전체보기()</a>
+			</div>
+		</div>
+	</div>
+</body>
+</body>
+</html>

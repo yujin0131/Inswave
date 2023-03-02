@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR&display=swap');
+
+a {text-decoration: none; color: black;}
+header{
+	padding:12px 0;
+	border-bottom: 1px solid #eeeeee;
+	z-index: 99999;
+}
+
+@keyframes fadeInup {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        opacity: 1;
+        color:#006FDF
+        transform: translateZ(0);
+    }
+}
+
+.header_main{
+	display: flex;
+	flex-direction: row;
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_left{
+	width:35%;
+	min-width: 350px;
+}
+
+.header_title{
+    display: flex;
+    flex-direction: row;
+}
+
+.header_logo_img{
+	width:110px;
+}
+
+.header_logo_text{
+	padding:3px 0 0 3px;
+}
+
+.header_right{
+	width:30%;
+	min-width: 350px;
+}
+
+.header_link{
+	float : right;
+	font-size: 16px;
+    padding: 3px 0 0 3px;
+}
+
+.header_link > a{
+	margin-left:15px;
+	opacity: 0.5;
+}
+
+.header_link > a:hover{
+	animation: fadeInup 0.5s;
+	color:#006FDF
+}
+
+.header_InsFam{
+	position: relative;
+	float : right;
+}
+
+.header_link_InsFam{
+	margin-left:15px;
+	opacity: 0.5;
+	border: none;
+  	background-color: transparent;
+  	font-family:'Noto Sans KR', sans-serif;
+    font-weight: 600;
+	font-size: 16px;
+}
+
+.header_link_InsFam:hover{
+	animation: fadeInup 0.5s;
+	color:#006FDF
+}
+
+.header_InsFam:hover > .div_InsFam {
+	display:block;
+}
+
+.div_InsFam{
+	display: none;
+    position: absolute;
+    top: 100%;
+    left: 60%;
+    z-index: 30;
+    width: 96px;
+    margin: 0 0 0 -48px;
+    padding-top: 12px;
+}
+
+.div_InsFam > div{
+	display: block;
+    border: 1px solid #eee;
+    border-bottom: 0;
+    background-color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.875em;
+    line-height: 2.3125rem;
+    color: #777;
+}
+
+.div_InsFam:last_child {
+    border-bottom: 1px solid #eee;
+
+}
+
+.InsFam_IO:hover, .InsFam_write:hover{
+	background-color:rgb(250 250 250);
+	opacity: 1;
+	color: black;
+}
+
+
+
