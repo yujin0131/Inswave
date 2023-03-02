@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/signUp.css"/>
+</head>
+<script type="text/javascript" src="/InswaveApp/js/comm/ElComm.js"></script>
+<script type="text/javascript" src="/InswaveApp/js/comm/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+
+	/**
+	 * 전역변수 선언
+	 * @date 2023.03.01
+	 * @memberOf
+	 * @param 
+	 * @returns
+	 * @author 
+	 * @example
+	 */
+	var SIGNUP_ROOT = "/api/signup";
+
+
+	function checkNum_click(){
+		document.getElementById("rule_num_true").style.display="none";
+		document.getElementById("rule_num_no").style.display="none";
+		var insNum = document.getElementById("userNum").value;
+		alert(insNum);
+		if(insNum.length != 6){
+			document.getElementById("rule_num_false").style.display="block";
+		}else{
+			document.getElementById("rule_num_false").style.display="none";
+		}
+		var SIGNUP_NUM = SIGNUP_ROOT + "/num";
+		var url = CONTEXT_PATH + SIGNUP_NUM + JSON_PATH;
+		var requestJSON = JSON.stringify({"elData":{"insNum":insNum}}); 
+		executeAjax(url, requestJSON, checkNum_click_callback);
+		
+	}
+	
+	function checkNum_click_callback(){
+		alert("callback");
+		/* console.log(data);
+		var elHeader = data.elHeader; // 응답 전문 elHeader
+		
+		if(insNum.length != 6){
+			document.getElementById("rule_num_true").style.display="block";
+		}else{
+			document.getElementById("rule_num_no").style.display="block";
+		} */
+
+	}
+	
+	function btnNum_click(){
+		document.getElementById("bar_navigtion").style.width="50%";
+		document.getElementById("signUp_first").style.display="none";
+		document.getElementById("signUp_second").style.display="block";
+	}
+	
+	function checkId_click(){
+		var insId = document.getElementById("userId").value;
+		alert(insId);
+		var requestJSON = JSON.stringify(
+				{ "insId":insId });
+		executeAjax(CONTEXT_PATH + "checkId.pwkjson", requestJSON, checkNum_click_callback);
+		
+		alert(insId);
+	}
+	
+
+	function btnId_click() {
+		document.getElementById("bar_navigtion").style.width="75%";
+		document.getElementById("signUp_second").style.display="none";
+		document.getElementById("signUp_third").style.display="block";
+	}
+	
+	function checkPwd_click(){
+		var check = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,32}/g;
+		
+		var insPwd = document.getElementById("insPwd").value;
+		alert("insPwd");
+		console.error("check.test(insPwd)", check.test(insPwd), insPwd);
+		if(!check.test(insPwd)){
+			alert("dddddddddd");
+		}
+	}
+</script>
+<body>
+	<div class="inswave">
+		<img src="/InswaveApp/images/techBlog/InswaveLogoText.png"></img>
+	</div>
+	<article class="mainContent">
+		<div class="cont_sign">
+			<strong class="screen_out"> 가입하기 진행순서</strong>
+			<div class="navigation_wrap">
+				<strong class="screen_out">가입하기 진행률</strong>
+				<div class="bar_navigtion" id="bar_navigtion">50%</div>
+			</div>
+			
+			<div id="signUp_first">
+				<h2 class="text_signUp_NUM">인스웨이브시스템즈 본인의
+				<br>사번을 입력해 주세요.
+				</h2>
+				
+				<form>
+					<div class="box_signUp_Num">
+						<input type="number"  class="userNum" id="userNum" placeholder="사번 입력" autocomplete="off">
+						<div class="box_btn">
+							<button type="button" class="btn_clear">입력 내용 지우기</button>
+							<button type="button" class="btn_check" onclick="checkNum_click();">사번체크</button>
+						</div>
+					</div>
+					<p id="rule_num_true" role="alert" style="color:#114194">유효한 사번입니다!</p>
+					<p id="rule_num_false" role="alert">사번은 6자리 수 입니다.</p>
+					<p id="rule_num_no" role="alert">이미 가입된 사번입니다.</p>
+					<div class="box_next">
+						<button type="button" class="next_btn_Num" onclick="btnNum_click();">다음</button>
+					</div>
+				</form>
+			</div>
+			
+			<div class="signUp_second" id="signUp_second">
+				<h2 class="text_signUp_Id">인스웨이브 기술블로그에서 사용할
+				<br>아이디를 입력해 주세요.
+				</h2>
+				
+				<div class="check_userNum">
+					<strong class="tit_Num">사번</strong>
+					<span class="txt_Num">100413</span><!-- 받을 값  -->
+				</div>
+				<div class="check_userId">
+					<strong class="tit_Id">아이디</strong>
+				</div>
+				<form>
+					<div class="box_signUp_Id">
+						<input type="text" class="userId" id="userId" placeholder="아이디 입력" autocomplete="off">
+						<div class="box_btn">
+							<button type="button" class="btn_clear">입력 내용 지우기</button>
+							<button type="button" class="btn_check" onclick="checkId_click();">중복확인</button>
+						</div>
+					</div>
+					<div class="box_next">
+						<button type="button" class="next_btn_Id" onclick="btnId_click();">다음</button>
+					</div>
+				</form>
+			</div>
+			
+			<div class="signUp_third" id="signUp_third">
+				<h2 class="text_signUp_Pwd">기술블로그계정 로그인에 사용할
+				<br>비밀번호를 등록해 주세요.
+				</h2>
+				
+				<div class="check_userNum">
+					<strong class="tit_Num">사번</strong>
+					<span class="txt_Num">100413</span><!-- 받을 값  -->
+				</div>
+				
+				<div class="check_userId">
+					<strong class="tit_Id">아이디</strong>
+					<span class="txt_Id">yujin0131</span><!-- 받을 값  -->
+				</div>
+				
+				<div class="check_userPwd">
+					<strong class="tit_Pwd">비밀번호</strong>
+				</div>
+				<form>
+					<div class="box_signUp_Pwd">
+						<input type="text" class="userPwd" id="userPwd" placeholder="비밀번호 입력(8~32자리)" autocomplete="off">
+						<div class="box_btn">
+							<button type="button" class="btn_clear" style="">입력 내용 지우기</button>
+						</div>
+					</div>
+						<p class="rule_pwd_none" role="alert">인스웨이브 비밀번호를 입력해 주세요.(영문자/숫자/특수문자)</p>
+						<p class="rule_pwd_valid" role="alert">비밀번호는 8~32자리(영문자/숫자/특수문자)로 입력할 수 있어요.</p>
+						<p class="rule_pwd_eng" role="alert">숫자, 특수문자를 함께 입력해 주세요.</p>
+						<p class="rule_pwd_num" role="alert">영문자, 특수문자를 함께 입력해 주세요.</p>
+						<p class="rule_pwd_etc" role="alert">영문자, 숫자를 함께 입력해 주세요.</p>
+						<p class="rule_pwd_eng_none" role="alert">영문자를 함께 입력해 주세요.</p>
+						<p class="rule_pwd_num_none" role="alert">숫자를 함께 입력해 주세요.</p>
+						<p class="rule_pwd_etc_none" role="alert">특수문자를 함께 입력해 주세요.</p>
+					
+					<div class="box_signUp_Pwd">
+						<input type="text" class="userPwd_check" id="userPwd_check" placeholder="비밀번호 재입력" autocomplete="off">
+						<div class="box_btn">
+							<button type="button" class="btn_clear" style="">입력 내용 지우기</button>
+						</div>
+					</div>
+						<p class="rule_pwd_check" role="alert">입력한 비밀번호와 재입력한 비밀번호가 일치하지 않습니다.</p>
+					
+					
+					<div class="box_next">
+						<button type="button" class="next_btn_Pwd">다음</button>
+					</div>
+				</form>
+			</div>
+			
+			
+			
+		</div>
+	</article>
+</body>
+</html>

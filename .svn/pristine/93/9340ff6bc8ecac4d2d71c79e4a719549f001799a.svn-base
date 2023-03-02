@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inswave 기술블로그</title>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/main.css"/>
+</head>
+<body>
+	<header>
+		<div class="header_main">
+			<div class="header-left">
+				<a href="#" class="title">
+					<img src="/InswaveApp/images/techBlog/InswaveLogoText.png" class="logo-img">
+					<div class="logo-text">기술블로그</div>
+				</a>
+			</div>
+			<div class="header-right">
+				<div class="confluence">
+				
+				</div>
+				<div class="intranet">
+				
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="category">
+	
+	</div>
+	<div class="main">
+		<div class="posts">
+			기술블로그
+		</div>
+		
+		<div class="sidebar">
+			<div class="sidebar-total">
+				<a href="#" class="link-total">분류 전체보기()</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

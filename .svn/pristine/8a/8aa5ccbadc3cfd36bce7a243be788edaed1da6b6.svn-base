@@ -1,0 +1,11 @@
+package com.project.inswave.domain.user;
+
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.github.underscore.Optional;
+
+public interface SignInRepository extends JpaRepository<User, Integer> {
+	Optional<User> findByInsnum(int insNum);
+}

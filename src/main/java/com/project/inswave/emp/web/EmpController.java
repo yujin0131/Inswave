@@ -81,7 +81,7 @@ public class EmpController {
     public void login(com.project.inswave.emp.vo.LoginVo loginVo ,HttpServletRequest request ) throws Exception {
     	String id = loginVo.getId();
     	String pw = loginVo.getPw();
-    	
+    	AppLog.info("CmmLoginCmmLoginwhy??????????");
     	LoginInfo info = loginProcess.processLogin(request, id, pw );
     	
     	AppLog.debug("- Login 정보 : " + info.toString());    	
@@ -99,7 +99,7 @@ public class EmpController {
     @ElDescription(sub="로그인 폼 ",desc="로그인 폼페이지를 로드합니다.")           
     public void loginFrm(com.project.inswave.emp.vo.LoginVo loginVo ,HttpServletRequest request ) throws Exception {    
 		String id = loginVo.getId();
-		loginProcess.processLogout(request, id);
+//		loginProcess.processLogout(request, id);
 
     }
     
