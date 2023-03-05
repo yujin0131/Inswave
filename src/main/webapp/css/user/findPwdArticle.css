@@ -1,0 +1,70 @@
+p[class^="rule_pwd"]{
+/* 	display:none;
+	 */
+    color: #e65f3e;
+    letter-spacing: -.05em;
+    font-size: 12px;
+}
+
+.check_userPwd {
+	margin: 7px 0 10px;
+	padding : 10px;
+}
+
+.box_signUp_Pwd {
+	position: relative;
+    margin-bottom: 3px;
+    border: solid #ccc;
+    border-width: 0 0 2px;
+}
+
+.userPwd, .userPwd_check {
+	position: relative;
+    width: 100%;
+    height: 45px;
+    padding: 10px 0 8px 6px;
+    border: 0;
+    font-size: 18px;
+    line-height: 25px;
+    color: #191919;
+    background-color: transparent;
+    letter-spacing: 0;
+    box-sizing: border-box;
+    outline: 0 none;
+    caret-color: #191919;
+    opacity: 1;
+}
+
+
+.box_btn{
+	position: absolute;
+    right: 0;
+    top: 7px;
+    min-width: 55px;
+    height: 43px;
+    font-size: 0;
+    text-align: right;
+}
+
+.btn_clear{
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+	background-image: url('../../images/techBlog/removeBtn.png');
+	background-size: cover;
+	margin: 3px;
+}
+
+
+.btn_check{
+	display: inline-block;
+    height: 30px;
+    margin-left:7px;
+    padding: 0 13px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 32px;
+    font-size: 14px;
+    line-height: 29px;
+    color: #191919;
+    vertical-align: top;
+}

@@ -2,8 +2,9 @@ package com.project.inswave.domain.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+@ComponentScan(basePackages="com.project.inswave.domain.user")
 public class SignInController {
 
 //    @Resource(name = "loginProcess")
@@ -58,9 +60,9 @@ public class SignInController {
 //		emf.close();
 		AppLog.info("login_controller");
 		AppLog.info(Integer.toString(userVO.getInsNum()));
-//		User user = signInService.getUserInfo(userVO.getInsNum());
-//		AppLog.info("###################user select###################");
-//		AppLog.info("InsIdx : "  + user.getInsIdx() + "InsId : "  + user.getInsId()  + "InsPwd : "  + user.getInsPwd());
+		User user = signInService.getUserInfo(userVO.getInsNum());
+		AppLog.info("###################user select###################");
+		AppLog.info("InsIdx : "  + user.getInsIdx() + "InsId : "  + user.getInsId()  + "InsPwd : "  + user.getInsPwd());
 		return null;
 	}
 }

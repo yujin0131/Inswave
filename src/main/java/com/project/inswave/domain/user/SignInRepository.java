@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface SignInRepository extends JpaRepository<User, Long> {
-	//Optional<User> findByInsnum(int insNum);
+	Optional<User> findByInsnum(int insNum);
 }

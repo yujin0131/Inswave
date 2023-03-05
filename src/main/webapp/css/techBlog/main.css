@@ -3,7 +3,9 @@
 * {margin:0;padding:0;}
 * html {height:1px;}
 body {margin:0; padding:0; scroll:auto;}
-
+body::-webkit-scrollbar {
+  display: none;
+}
 .tag{
 	justify-content: center;
 	display: flex;
@@ -14,6 +16,7 @@ body {margin:0; padding:0; scroll:auto;}
 
 .tag_total{
 	width:900px;
+	justify-content: center;
 }
 
 .tag_item{
@@ -28,8 +31,9 @@ body {margin:0; padding:0; scroll:auto;}
     letter-spacing:-1px;
     word-spacing: -1px;
     font-size:14px;
-    padding-left:20px;
-    margin-bottom: 15px;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 17px;
 }
 
 input[type=checkbox] {

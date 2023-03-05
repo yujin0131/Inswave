@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/findByIdArticle.css"/>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/findByEmailArticle.css"/>
+</head>
+<body>
+	<div class="inswave" onclick="location.href='../techBlog/main.html'">
+		<img src="/InswaveApp/images/techBlog/InswaveLogoText.png"></img>
+	</div>
+
+	<div class="findIdFrm">
+		<article id="findByEmailArticle">
+			<h2 class="tit_main">사원번호, 이메일로<br>
+				계정을 찾습니다. </h2>
+			<p class="desc_main">기술블로그에 등록한 사원번호 및 이메일로 계정을 찾습니다.</p>
+	
+			<form id="findByEmailForm" action="#" method="post" name="findByEmail">
+				<fieldset>
+					<strong class="txt_id">이름</strong>
+					<div class="input_main">
+						<input data-type="text" class="input_name" id="input_name" validator="insName"
+						data-error-empty="이름이 등록되지 않았습니다. 입력해주세요." placeholder="사원번호" type="number">
+						
+						<p class="info_error">사원번호가 입력되지 않았습니다. 입력해주세요.</p>
+					</div>
+					
+					<div class="input_main">
+						<input data-type="text" class="input_email" id="input_email" validator="insEmail" maxlength="60"
+						data-error-empty="이메일을 입력해 주세요." data-error-invalid="이메일 형식이 올바르지 않습니다." placeholder="이메일" type="email">
+
+					</div>
+					
+					<div class="box_next">
+						<button type="button" class="next_btn_Id" onclick="btnEmail_click();">기술블로그 계정 찾기</button>
+					</div>
+				</fieldset>
+			</form>
+		</article>
+	</div>
+</body>
+</html>

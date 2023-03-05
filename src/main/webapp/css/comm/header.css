@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR&display=swap');
 
+* {margin:0;padding:0;}
+* html {height:1px;}
+body {margin:0; padding:0; scroll:auto;}
+
 a {text-decoration: none; color: black;}
 header{
 	padding:12px 0;
