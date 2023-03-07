@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	                    http://www.springframework.org/schema/tx 
+	                    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	                    http://www.springframework.org/schema/data/jpa
+	                    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd	                    
+	                    http://www.springframework.org/schema/aop 
+	                    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<!--  JPA Setting -->
+
+    <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" id="hibernateJpaVendorAdapter">
+        <property name="showSql" value="true" /><!-- 
+        <property name="formatSql" value="true"/>
+		<property name="useSqlComments" value="true"/> -->
+		
+
+    </bean>  
+    
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+        <property name="dataSource" ref="dataSourceJPA" />
+        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+        <property name="packagesToScan" value="com.project.inswave" />
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MariaDB103Dialect</prop> <!-- 방언 -->
+                <prop key="hibernate.show_sql">true</prop>                          <!-- SQL 보기 -->
+                <prop key="hibernate.format_sql">true</prop>                        <!-- SQL 정렬해서 보기 -->
+                <prop key="hibernate.use_sql_comments">true</prop>                  <!-- SQL 주석 보기 -->
+                <!-- <prop key="hibernate.id.new_generator_mappings">true</prop> -->       <!-- JPA 표준에 맞게 새로운 키 생성 전략을 사용-->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>                    <!-- DDL 자동 생성 create / create-drop / update / validate / none -->
+            </props>
+        </property>
+    </bean>
+
+    
+    <!-- JPA repository Interface Scanning -->
+
+	<jpa:repositories base-package="com.project.inswave" transaction-manager-ref="txManager" />   
+
+	
+	
+	
+</beans>

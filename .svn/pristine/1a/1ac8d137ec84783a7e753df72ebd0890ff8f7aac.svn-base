@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/comm/header.css"/>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/techBlog/news.css"/>
+</head>
+<body>
+	<header>
+		<div class="header_main">
+			<div class="header_left">
+				<a href="/InswaveApp/html/techBlog/main.html" class="header_title">
+					<img src="/InswaveApp/images/techBlog/InswaveLogoText.png" class="header_logo_img"></img>
+					<div class="header_logo_text">기술블로그</div>
+				</a>
+			</div>
+			<div class="header_right">
+				<div class="header_link"> 
+					<a href="https://inswave.com/confluence/spacedirectory/view.action" class="header_link_confluence">Confluence</a>
+					<a href="https://inswave.com/jira/secure/Dashboard.jspa" class="header_link_jira">Jira</a>
+					<a href="/InswaveApp/html/techBlog/news.html" class="header_link_News">News</a>
+					<div class="header_InsFam">
+						<a class="header_link_InsFam">InsFam</a>
+						<div class="div_InsFam" id="div_InsFam">
+							<div class=InsFam_IO onclick="location.href='../user/signIn.html'">로그인</div>
+							<div class=InsFam_write onclick="InsFam_Write();">글쓰기</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<article>
+		<div class="news_header">
+			<h1>
+				<span>News</span>
+				<em>3</em>
+			</h1>
+		</div>
+		<div class="news_body">
+			<ul class="news_list">
+				<li class="news_list_item">
+					<a class="news_item_link" href="#">
+						<div class="news_item_img">
+							<div class="news_item_ima_area">
+								<div class="img" style="background-image: url('/InswaveApp/images/techBlog/InswaveLogoImg.png')"></div>
+							</div>
+						</div>
+						<div class="news_item_info">
+							<p class="title">쑥쑥 성장한 Tech &의 기록 (feat. 두 살 생일 축하해!)</p>
+							<p class="summary">
+							안녕하세요. 카카오엔터프라이즈에서 개발자의 성장을 돕는 Developer Relations 파트의 Mia(정혜원)입니다. 여러분과 제가 만날 수 있는 소중한 이곳, 카카오엔터프라이즈의 스토리가 담긴 Tech &(테크앤)이 탄생한 지 어느덧 2주년이 되었습니다. ✍🏼 Tech & 시작을 돌아보며 Tech &은 우리의 일상과 비즈니스를 위한 앞선 기술의 연구-개발-공유-확산의 선순환에 기여하려는 카카오엔터프라이즈의 의지가 담긴 '기술블로그'에요. AI는 물론 클라우드, 데이터, 검색에 이르기까지 폭넓은 기술을 다루는 '기술회사'로서 우리가 어떻게 연구하고 개발하고 있는지 또 이를 어떻게 서비스의 모습으로 구현하는 지 등 다양한 이야기를 나누고자 탄생하였죠. 저는 올해부터 Tech & 운영진으로 참여하고 있는
+							</p>
+						</div>
+					</a>
+				</li>
+				
+				<li class="news_list_item">
+					<a class="news_item_link" href="#">
+						<div class="news_item_img">
+							<div class="news_item_ima_area">
+								<div class="img" style="background-image: url('/InswaveApp/images/techBlog/InswaveLogoImg.png')"></div>
+							</div>
+						</div>
+						<div class="news_item_info">
+							<p class="title">쑥쑥 성장한 Tech &의 기록 (feat. 두 살 생일 축하해!)</p>
+							<p class="summary">
+							안녕하세요. 카카오엔터프라이즈에서 개발자의 성장을 돕는 Developer Relations 파트의 Mia(정혜원)입니다. 여러분과 제가 만날 수 있는 소중한 이곳, 카카오엔터프라이즈의 스토리가 담긴 Tech &(테크앤)이 탄생한 지 어느덧 2주년이 되었습니다. ✍🏼 Tech & 시작을 돌아보며 Tech &은 우리의 일상과 비즈니스를 위한 앞선 기술의 연구-개발-공유-확산의 선순환에 기여하려는 카카오엔터프라이즈의 의지가 담긴 '기술블로그'에요. AI는 물론 클라우드, 데이터, 검색에 이르기까지 폭넓은 기술을 다루는 '기술회사'로서 우리가 어떻게 연구하고 개발하고 있는지 또 이를 어떻게 서비스의 모습으로 구현하는 지 등 다양한 이야기를 나누고자 탄생하였죠. 저는 올해부터 Tech & 운영진으로 참여하고 있는
+							</p>
+						</div>
+					</a>
+					
+				</li>
+				
+				<li class="news_list_item">
+					<a class="news_item_link" href="#">
+						<div class="news_item_img">
+							<div class="news_item_ima_area">
+								<div class="img" style="background-image: url('/InswaveApp/images/techBlog/InswaveLogoImg.png')"></div>
+							</div>
+						</div>
+						<div class="news_item_info">
+							<p class="title">쑥쑥 성장한 Tech &의 기록 (feat. 두 살 생일 축하해!)</p>
+							<p class="summary">
+							안녕하세요. 카카오엔터프라이즈에서 개발자의 성장을 돕는 Developer Relations 파트의 Mia(정혜원)입니다. 여러분과 제가 만날 수 있는 소중한 이곳, 카카오엔터프라이즈의 스토리가 담긴 Tech &(테크앤)이 탄생한 지 어느덧 2주년이 되었습니다. ✍🏼 Tech & 시작을 돌아보며 Tech &은 우리의 일상과 비즈니스를 위한 앞선 기술의 연구-개발-공유-확산의 선순환에 기여하려는 카카오엔터프라이즈의 의지가 담긴 '기술블로그'에요. AI는 물론 클라우드, 데이터, 검색에 이르기까지 폭넓은 기술을 다루는 '기술회사'로서 우리가 어떻게 연구하고 개발하고 있는지 또 이를 어떻게 서비스의 모습으로 구현하는 지 등 다양한 이야기를 나누고자 탄생하였죠. 저는 올해부터 Tech & 운영진으로 참여하고 있는
+							</p>
+						</div>
+					</a>
+					
+				</li>
+			</ul>
+		</div>
+		<div class="news_pagination">
+			<a class="prev">이전</a>
+			<a class="page" href="#">
+				<span class="selected">1</span>
+			</a>
+			<a class="next">다음</a>
+		</div>
+		
+		
+	
+	</article>
+	
+	
+</body>
+</html>

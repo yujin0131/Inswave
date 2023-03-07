@@ -176,6 +176,19 @@
             p:basename="messages"/>
     -->
     
+
+    
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter ">
+	    <property name="messageConverters">
+	        <list>
+	       		<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+	            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+	                <property name="supportedMediaTypes" value="application/json" />
+	            </bean>
+            </list>
+	    </property>
+	</bean>
+ 
    
     <!-- For Pagination Tag -->
     <bean id="imageRenderer" class="com.project.inswave.cmmn.ImgPaginationRenderer"/>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/findByIdArticle.css"/>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/findByEmailArticle.css"/>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/findPwdArticle.css"/>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/layerAlert.css"/>
+</head>
+<script type="text/javascript">
+	function btnId_click(){
+		document.getElementById("findByIdArticle").style.display="none";
+		document.getElementById("findByEmailArticle").style.display="block";
+	}
+	
+	function btnEmail_click(){
+		document.getElementById("findByEmailArticle").style.display="none";
+		document.getElementById("findPwdArticle").style.display="block";
+	}
+	
+	function btnPwd_click(){
+	}
+
+</script>
+<body>
+	<div class="inswave" onclick="location.href='../techBlog/main.html'">
+		<img src="/InswaveApp/images/techBlog/InswaveLogoText.png"></img>
+	</div>
+
+	<div class="findPwdFrm">
+		<article id="findByIdArticle">
+			<h2 class="tit_main">인스웨이브 기술블로그 계정의<br>
+				비밀번호를 재설정합니다.</h2>
+			<p class="desc_main">비밀번호를 재설정할<br>
+			사원번호 또는 아이디를 입력해주세요</p>
+			<form id="findByIdForm" action="#" method="post" name="findById">
+				<fieldset>
+					<strong class="txt_id">기술블로그 아이디</strong>
+					<div class="input_main"><!-- 
+						<label for="inputId" class="inputId_label" id="inputId_label">
+							<span aria-hidden="true" class="screen_out"></span>
+						</label> -->
+						<input data-type="text" class="input_id" id="input_id" validator="insNum_or_insId"
+						data-error-empty="비밀번호를 재설정할  기술블로그 계정의 아이디 또는 사원번호를 입력해 주세요." placeholder="사원번호 또는 아이디" type="text"
+						data-error-invalid="아이디를 정확하게 입력해 주세요.">
+						<div class="box_btn">
+							<button type="button" class="btn_clear" style="display:block;">입력 내용 지우기</button>
+						</div>
+						<p class="info_error">계정 아이디를 정확하게 입력해 주세요.</p>
+					</div>
+					
+					<div class="box_next">
+						<button type="button" class="next_btn_Id" onclick="btnId_click();">다음</button>
+					</div>
+				</fieldset>
+			</form>
+
+			
+		</article>
+		
+		<article id="findByEmailArticle" style="display:none">
+			<h2 class="tit_main">비밀번호 재설정을 위해<br>
+				사용자 확인을 진행합니다.</h2>
+			<p class="desc_main">사용중인 계정 이메일로 인증해 주세요.</p>
+
+			<form id="findByEmailForm" action="#" method="post" name="findByEmail">
+				<fieldset>
+					<strong class="txt_id">이름</strong>
+					<div class="input_main">
+						<input data-type="text" class="input_name" id="input_name" validator="insName"
+						data-error-empty="이름이 등록되지 않았습니다. 입력해주세요." placeholder="이름" type="text">
+						<div class="box_btn_name">
+							<button type="button" class="btn_clear_name">입력 내용 지우기</button>
+							<div class="btn_info_cnt">
+								<span class="count"> 0 / 25</span>
+							</div>
+						</div>
+						
+						<p class="info_error">이름이 등록되지 않았습니다. 입력해주세요.</p>
+					</div>
+					
+					<div class="input_main">
+						<input data-type="text" class="input_email" id="input_email" validator="insEmail" maxlength="60"
+						data-error-empty="이메일을 입력해 주세요." data-error-invalid="이메일 형식이 올바르지 않습니다." placeholder="이메일" type="email">
+						<div class="box_btn_email">
+							<button type="button" class="btn_email_check" onclick="document.getElementById('layer_alert').style.display = 'block'">인증요청</button>
+						</div>
+					</div>
+					
+					<div class="box_next">
+						<button type="button" class="next_btn_Id" onclick="btnEmail_click();">다음</button>
+					</div>
+				</fieldset>
+			</form>
+		</article>
+		
+		
+		<article id="findPwdArticle" style="display:none">
+			<h2 class="tit_main">비밀번호 재설정을 진행합니다.</h2>
+			<p class="desc_main">새로운 비밀번호를 입력해 주세요.</p>
+				
+			<form id="send_passcode_form" action="#" method="post" name="findPwd">
+				<div class="check_userPwd">
+					<strong class="txt_id">비밀번호</strong>
+				</div>
+				<div class="box_signUp_Pwd">
+					<input type="text" class="userPwd" id="userPwd" placeholder="비밀번호 입력(8~32자리)" autocomplete="off">
+					<div class="box_btn">
+						<button type="button" class="btn_clear" style="">입력 내용 지우기</button>
+					</div>
+				</div>
+					<p class="rule_pwd_none" role="alert">인스웨이브 비밀번호를 입력해 주세요.(영문자/숫자/특수문자)</p>
+					<p class="rule_pwd_valid" role="alert">비밀번호는 8~32자리(영문자/숫자/특수문자)로 입력할 수 있어요.</p>
+					<p class="rule_pwd_eng" role="alert">숫자, 특수문자를 함께 입력해 주세요.</p>
+					<p class="rule_pwd_num" role="alert">영문자, 특수문자를 함께 입력해 주세요.</p>
+					<p class="rule_pwd_etc" role="alert">영문자, 숫자를 함께 입력해 주세요.</p>
+					<p class="rule_pwd_eng_none" role="alert">영문자를 함께 입력해 주세요.</p>
+					<p class="rule_pwd_num_none" role="alert">숫자를 함께 입력해 주세요.</p>
+					<p class="rule_pwd_etc_none" role="alert">특수문자를 함께 입력해 주세요.</p>
+				
+				<div class="box_signUp_Pwd">
+					<input type="text" class="userPwd_check" id="userPwd_check" placeholder="비밀번호 재입력" autocomplete="off">
+					<div class="box_btn">
+						<button type="button" class="btn_clear" style="">입력 내용 지우기</button>
+					</div>
+				</div>
+					<p class="rule_pwd_check" role="alert">입력한 비밀번호와 재입력한 비밀번호가 일치하지 않습니다.</p>
+				
+				
+				<div class="box_next">
+						<button type="button" class="next_btn_Id" onclick="btnPwd_click();">다음</button>
+					</div>
+			</form>
+		</article>
+		
+		
+		
+		
+		
+		
+		<div id="layer_alert" data-role="layer" role="dialog" class="layer_alert" style="display:none;"  onclick="document.getElementById('layer_alert').style.display = 'none'">
+			<div class="layer_background"></div>
+			<div class="layer_main">
+				<div class="layer_main_inner">
+					<div class="layer_txt_msg">입력한 정보가 인스웨이브계정 정보와 일치하지 않습니다.</div>
+					<div class="layer_btn">
+						<button type="button" class="layer_btn_confirm">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

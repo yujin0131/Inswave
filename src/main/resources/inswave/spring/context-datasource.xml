@@ -9,8 +9,14 @@
 	<bean id="dataSourceXA" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="${EL_MAIN_WORK_DATASOURCE_NAME}"/>  
 		<property name="resourceRef" value="true" />		
-		
-    </bean>
 
-         
+    </bean>
+    
+    <bean id="dataSourceJPA" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>  
+			<property name="username" value="edu_work" />
+			<property name="password" value="edu_work" />
+			<property name="url" value="jdbc:mariadb://192.168.56.131:3306/EDU_WORK" />	
+    </bean>
+  
 </beans>

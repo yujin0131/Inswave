@@ -1,0 +1,97 @@
+div[data-role=layer].layer_alert {
+    display: block;
+}
+
+div[data-role=layer] {
+    display: none;
+}
+
+.layer_main,  .layer_main_inner {
+    word-break: break-all !important;
+}
+
+.layer_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: .4;
+    filter: alpha(opacity=40);
+    z-index: 998;
+}
+
+.layer_main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10%;
+    text-align: center;
+    font-size: 0;
+    z-index: 999;
+}
+
+.layer_main_inner {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 450px;
+    padding: 45px 30px 30px;
+    vertical-align: middle;
+    font-size: 15px;
+    border-radius: 3px;
+    background-color: #fff;
+    word-break: keep-all;
+    box-sizing: border-box;
+}
+
+.screen_out {
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.tit_layer {
+    display: block;
+    font-size: 18px;
+    color: #404040;
+    line-height: 26px;
+    letter-spacing: -1px;
+    word-break: keep-all;
+    font-weight: normal;
+}
+
+.layer_txt_msg {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 22px;
+    min-height:50px;
+    color: #7c7c7c;
+    letter-spacing: -1px;
+}
+
+.layer_btn {
+    margin-top: 30px;
+    display: block;
+    overflow: inherit;
+    margin-left: 0;
+}
+
+.layer_btn_confirm {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight:600;
+    color: white;
+    background: #114194;
+}

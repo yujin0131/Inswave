@@ -11,5 +11,6 @@
     <!--  setting name="defaultStatementTimeout" value="30"/ -->
   </settings>
 
+<typeAliases></typeAliases>
 </configuration>
  
