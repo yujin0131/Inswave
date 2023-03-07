@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inswave 기술블로그</title>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/signIn.css"/>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+<script type="text/javascript" src="/InswaveApp/js/comm/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/InswaveApp/js/comm/ElComm.js"></script>
+<script type="text/javascript">
+
+	function login_click() {
+		var userId = document.getElementById('loginID').value;
+		var userPwd = document.getElementById('loginPWD').value;
+		alert(userId);
+		alert(userPwd);
+		
+		var requestJSON = JSON.stringify(
+				{"elData": {
+					"userId":userId,
+					"userPwd":userPwd
+					}
+				});
+		executeAjax(CONTEXT_PATH + "logIO.pwkjson", requestJSON, login_click_callback);
+	}
+	
+	function login_click_callback(data) {
+		alert("callback");
+		console.log(data);
+		var elHeader = data.elHeader; // 응답 전문 elHeader
+
+	}
+
+
+</script>
+</head>
+<body>
+	<div class="inswave" onclick="location.href='../techBlog/main.html'">
+		<img src="/InswaveApp/images/techBlog/InswaveLogoText.png"></img>
+	</div>
+
+	<div class="loginFrm">
+		<div class="login_content">
+			<div class="loginID" id="loginID">
+				<input type="text" class="inputholder" placeholder="아이디, 사번">
+				<p class="info_tip" role="alert">
+					<span role="text">
+						<span class="txt_tip">TIP</span>
+						아이디가 기억이 안난다면 사번을 입력하세요.
+					</span>
+				</p>
+			</div>
+		
+			<div class="loginPWD" id="loginPWD">
+				<input type="password" placeholder="비밀번호 ">
+			</div>
+			<div >
+				<button class="loginBtn" onclick="login_click();">로그인</button>
+			</div>
+			<div class="info_user">
+				<a href="../user/signUp.html" class="link_join">회원가입</a>
+				
+				<ul class="list_user">
+					<li>
+						<a href="#" class="link_user" onclick="location.href='../user/findId.html'"">아이디 찾기</a>
+					</li>
+					<li>
+						<a href="#" class="link_user" onclick="location.href='../user/findPwd.html'">비밀번호 찾기</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -18,7 +18,29 @@
 		    <mvc:mapping path="/**" />
 		    <bean class="com.inswave.elfw.intercept.ElHandlerInterceptorAdapter" />
 	    </mvc:interceptor>
-	</mvc:interceptors> 	      	
+	</mvc:interceptors> 	
+
+	<mvc:annotation-driven>
+	     <mvc:message-converters>
+		    <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+			<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
+	   </mvc:message-converters>
+	</mvc:annotation-driven>
+
+	
+		
+<!-- 	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=utf-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>    -->   	
     		    	   
 	<bean id="jdbcInterceptor" class="com.inswave.elfw.db.sql.ElJdbcInterceptor">
 	    <property name="sqlInjectionPatternInterceptor" ref="sqlInjectionPatternInterceptor" />
@@ -71,6 +93,7 @@
             </map>
         </property>                             	
     </bean>
+    
     
     <bean id="xmlMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
 		<property name="autodetectAnnotations" value="true"/>	

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inswave 기술블로그</title>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/techBlog/main.css"/>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/comm/header.css"/>
+<script>
+
+	
+	/**
+	 * InsFamily 전용 버튼 onclick 이벤트
+	 * @date 
+	 * @memberOf
+	 * @param
+	 * @returns
+	 * @example
+	 */
+	
+	function InsFam_IO(){
+		alert("dd");
+		
+		  
+	}
+
+	function InsFam_write() {
+		
+		
+		
+	}
+
+</script>
+</head>
+<body>
+<body>
+	<header>
+		<div class="header_main">
+			<div class="header_left">
+				<a href="/InswaveApp/html/techBlog/main.html" class="header_title">
+					<img src="/InswaveApp/images/techBlog/InswaveLogoText.png" class="header_logo_img"></img>
+					<div class="header_logo_text">기술블로그</div>
+				</a>
+			</div>
+			<div class="header_right">
+				<div class="header_link"> 
+					<a href="https://inswave.com/confluence/spacedirectory/view.action" class="header_link_confluence">Confluence</a>
+					<a href="https://inswave.com/jira/secure/Dashboard.jspa" class="header_link_jira">Jira</a>
+					<a href="/InswaveApp/html/techBlog/news.html" class="header_link_News">News</a>
+					<div class="header_InsFam">
+						<a class="header_link_InsFam">InsFam</a>
+						<div class="div_InsFam" id="div_InsFam">
+							<div class=InsFam_IO onclick="location.href='../user/signIn.html'">로그인</div>
+							<div class=InsFam_write onclick="location.href='posts.html'">글쓰기</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="tag">
+		<div class="tag_total">
+			<p class="tag_title">태그 필터 적용하기</p>
+			<div class="tag_item">
+				<span>
+					<input id="tag_check" type="checkbox">
+					<label for="tag_check">app</label>
+				</span>
+				<span>
+					<input id="tag_aws" type="checkbox">
+					<label for="tag_aws">aws</label>
+				</span>
+				<span>
+					<input id="tag_tms" type="checkbox">
+					<label for="tag_tms">prowokrs tms</label>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<article class="posts">
+			<div class="posts_item">
+				<a href="#">
+					<p class="author">
+						<span> Mar.02.2023</span>
+						<span>이유진</span>
+					</p>
+					<h1>Spark on Kubernetes로 이관하기</h1>
+					<p>B2B 알림 서비스의 예시를 통해 Kafka CDC를 활용해 코드를 어떻게 작성하는지, Kafka CDC를 사용할 때 주의할 것은 무엇인지 알아봅니다.</p>
+				</a>
+			</div>
+			<div class="posts_item">
+				<a href="#">
+					<p class="author">
+						<span> Mar.02.2023</span>
+						<span>이유진</span>
+					</p>
+					<h1>Word Suggestion 서비스 소개</h1>
+					<p>사용자가 입력한 단어를 교정하여 결과를 제공하는 서비스입니다.
+						쇼핑몰에서 가장 많이 사용된 단어들을 기반으로 개발되어 쇼핑 상품에 특화된 교정 서비스를 제공하고, 사용자가 직접 신</p>
+				</a>
+			</div>
+			<div class="posts_item">
+				<a href="#">
+					<p class="author">
+						<span> Mar.02.2023</span>
+						<span>이유진</span>
+					</p>
+					<h1>Unity 네트워크 성능을 2배 빠르게 하는 웹 캐시! 쉽게 사용하기</h1>
+					<p>웹 캐시를 사용하면 네트워크 통신 성능을 크게 향상시킬 수 있습니다.
+						웹 캐시는 네트워크 통신을 할 때 HTTP 기반으로 콘텐츠를 저장하고 재사용하는 것입니다. 이때 HTTP 헤더에 검증 필드</p>
+				</a>
+			</div>
+		</article>
+		
+		<aside class="sidebar">
+			<div class="sidebar_total">
+				<nav class="category">
+					<ul class="category_total">
+						<li>
+							<a href="#" class="link_total">분류 전체보기<span class="cnt_total">(27)</span></a>
+							<ul class="category_list">
+								<li>
+									<a href="#" class="link_item">웹 개발<span class="cnt_item">(17)</span></a>
+									<ul class="category_sub_list">
+										<li>
+											<a href="#" class="link_sub_item">웹 개발<span class="cnt_sub_item">(7)</span></a>
+										</li>
+										<li>
+											<a href="#" class="link_sub_item">웹 개발2<span class="cnt_sub_item">(3)</span></a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
+	</div>
+</body>
+</body>
+</html>

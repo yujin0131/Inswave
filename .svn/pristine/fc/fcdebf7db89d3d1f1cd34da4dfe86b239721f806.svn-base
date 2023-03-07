@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p" 
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+				           http://www.springframework.org/schema/context 
+				           http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+				           http://www.springframework.org/schema/aop
+				           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	
+    <!--
+        - The controllers are autodetected POJOs labeled with the @Controller annotation.
+    -->
+    <context:component-scan base-package="com.project" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <!-- context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/ -->
+    </context:component-scan>
+   
+    <!-- BSJ Controller Interceptor -->
+    <bean id="controllerInterceptorAdvice" class="com.inswave.elfw.intercept.ElControllerInterceptor" />          
+    <aop:config>        
+ 		<aop:pointcut id="controllerInterceptorPointcut" expression="execution(* com.project..*Controller.*(..))" /> 		
+        <aop:advisor advice-ref="controllerInterceptorAdvice"
+            pointcut-ref="controllerInterceptorPointcut" id="controllerInterceptorAdvisor" order="0"/>
+    </aop:config>        
+
+	<!-- BSJ Common Controller -->
+	<bean id="elCommController" class="com.inswave.elfw.web.ElCommController"/>
+	    
+    <!--
+        - The form-based controllers within this application provide @RequestMapping 
+        - annotations at the type level for path mapping URLs and @RequestMapping 
+        - at the method level for request type mappings (e.g., GET and POST). 
+        - In contrast, ClinicController - which is not form-based - provides 
+        - @RequestMapping only at the method level for path mapping URLs.
+        -
+        - DefaultAnnotationHandlerMapping is driven by these annotations and is 
+        - enabled by default with Java 5+.
+    -->
+
+    <!--
+        - This bean processes annotated handler methods, applying Application-specific PropertyEditors
+        - for request parameter binding. It overrides the default AnnotationMethodHandlerAdapter.
+     -->
+ 
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>     
+     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" >           
+		<property name="customArgumentResolvers">
+			<list>
+				<bean class="com.inswave.elfw.resolver.ElModelAttributeMethodProcessor">		
+				</bean>	
+			</list>
+		</property>        
+    </bean>      
+    
+    <!--
+        - This bean resolves specific types of exceptions to corresponding logical 
+        - view names for error views. The default behaviour of DispatcherServlet 
+        - is to propagate all exceptions to the servlet container: this will happen 
+        - here with all other types of exceptions.
+    -->
+    <!-- bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="cmmn/error"/>
+        <property name="exceptionMappings">
+            <props>                
+                <prop key="org.springframework.dao.DataAccessException">cmmn/error</prop>               
+                <prop key="org.springframework.security.AccessDeniedException">cmmn/error</prop>                                                            
+                <prop key="com.inswave.elfw.UserException">cmmn/error</prop>
+                <prop key="com.inswave.elfw.ElException">cmmn/error</prop>
+            </props>
+        </property>
+    </bean -->
+    
+    <bean id="exceptionResolver" class="com.inswave.elfw.exception.ElExceptionResolver">
+        <property name="view" value="cmmn/error"/>
+    </bean>    
+    
+    <!--
+        - This bean configures the 'prefix' and 'suffix' properties of 
+        - InternalResourceViewResolver, which resolves logical view names 
+        - returned by Controllers. For example, a logical view name of "vets" 
+        - will be mapped to "/WEB-INF/jsp/vets.jsp".
+    -->
+    <!-- bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="3" 
+    p:viewClass="org.springframework.web.servlet.view.JstlView" 
+    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/ -->
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">    	
+    	<property name="order"  value="3"/>    	
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>        
+    </bean>
+
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1" />        
+        <!--  property name="favorPathExtension" value="true"/>
+        <property name="mediaTypes">
+            <map>            	
+            	<entry key="json"   value="application/json"/>
+            	<entry key="xform"  value="application/xform"/>      
+            	<entry key="xmlx"    value="application/xml"/> 
+            	<entry key="test"   value="application/xml"/>    
+            	        	    	                                                             
+            </map>
+        </property -->
+        
+        <property name="contentNegotiationManager">
+        	<bean class="org.springframework.web.accept.ContentNegotiationManager">
+        		<constructor-arg>
+        			<bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+        				<constructor-arg>
+        					<map>
+				            	<entry key="pwkjson"   value="application/json"/>
+				            	<entry key="fld"   value="application/fld"/>
+				            	<entry key="xform"  value="application/xform"/>      
+				            	<entry key="pwkxml"    value="application/xml"/> 
+				            	<entry key="test"   value="application/test"/>  
+        					</map>
+        				</constructor-arg>
+        			</bean>
+        		</constructor-arg>
+        	</bean>
+        </property>
+        
+        
+	    <property name="defaultViews">
+	      <list>	        
+	        <bean class="com.inswave.elfw.view.ElMappingJacksonJsonView">	
+	           <property name="contentType" value="application/json"/>        	
+	           <property name="objectMapper" ref="jsonMapper"/>	        	
+	        </bean>
+						
+			<!--  bean class="com.inswave.elfw.view.XPlatformView">	
+				<property name="contentType" value="application/xform"/>        		        	
+	        </bean -->
+	        	        		        	
+			<bean class="com.inswave.elfw.view.ElMarshallingView">
+		        <property name="contentType" value="application/test"/>
+				<constructor-arg ref="xmlMarshaller">
+	            </constructor-arg>		           	            	            	       
+		    </bean>
+
+			<bean class="com.inswave.elfw.view.ElMarshalling2View">
+	           <property name="contentType" value="application/xml"/>        	     		                    	            	       
+		    </bean>
+		    		    
+	        <bean class="com.inswave.elfw.view.ElFldMarshallingView">	     
+	              <property name="contentType" value="application/fld"/>           		        	
+	        </bean>		   		    
+		    
+	      </list>
+	    </property>
+	     <!--  property name="ignoreAcceptHeader" value="true" / -->	  
+    </bean>
+ 
+	<!-- bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="schemas">
+            <list>    
+                <value>classpath:/com/bsj/elfw/util/vo/*</value>              
+                <value>classpath:/com/bsj/**/vo/*</value>               			             
+            </list>
+        </property>
+    </bean -->     
+    <!--
+        - Message source for this context, loaded from localized "messages_xx" files.
+        - Could also reside in the root application context, as it is generic,
+        - but is currently just used within Application's web tier.
+    
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+            p:basename="messages"/>
+    -->
+    
+
+    
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter ">
+	    <property name="messageConverters">
+	        <list>
+	            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+	                <property name="supportedMediaTypes" value="application/json" />
+	            </bean>
+            </list>
+	    </property>
+	</bean>
+	    
+   
+    <!-- For Pagination Tag -->
+    <bean id="imageRenderer" class="com.project.inswave.cmmn.ImgPaginationRenderer"/>
+
+    <bean id="paginationManager" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
+        <property name="rendererType">
+            <map>
+                <entry key="image" value-ref="imageRenderer"/> 
+            </map>
+        </property>
+    </bean>
+	<!-- /For Pagination Tag -->
+</beans>

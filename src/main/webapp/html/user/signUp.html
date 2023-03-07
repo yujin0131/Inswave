@@ -38,12 +38,15 @@
 		
 	}
 	
-	function checkNum_click_callback(){
+	function checkNum_click_callback(data){
 		alert("callback");
-		/* console.log(data);
-		var elHeader = data.elHeader; // 응답 전문 elHeader
-		
-		if(insNum.length != 6){
+		alert(JSON.stringify(data));
+		var respData = data.responseJSON; // JSON 응답결과
+		alert(respData);
+		var elHeader = respData.elHeader; // 시스템 헤더
+		var elData = respData.elData; // 응답 데이터
+		alert(elData.insPwd);
+/* 		if(insNum.length != 6){
 			document.getElementById("rule_num_true").style.display="block";
 		}else{
 			document.getElementById("rule_num_no").style.display="block";

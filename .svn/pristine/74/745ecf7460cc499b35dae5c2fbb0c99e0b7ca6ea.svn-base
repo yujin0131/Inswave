@@ -1,0 +1,66 @@
+.box_btn_name {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    min-width: 55px;
+    text-align: right;
+}
+
+.btn_clear_name{
+	text-align: right;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    float:left;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    vertical-align: top;
+    background: url('../../images/techBlog/removeBtn.png');
+    background-size: cover;
+}
+
+.btn_info_cnt {
+    display: inline-block;
+    margin-left: 15px;
+    font-size: 12px;
+    color: #adadad;
+    line-height: 22px;
+    text-align: right;
+}
+
+.input_email{
+    width: 100%;
+    height: 48px;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #ebebeb;
+    padding: 11px 70px 8px 0;
+    color: #252525;
+    outline: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    caret-color: #191919;
+    text-decoration: none;
+}
+
+.box_btn_email{
+	position: absolute;
+    top: 10px;
+    right: 0;
+    min-width: 55px;
+    text-align: right;
+}
+
+.btn_email_check{
+	display: inline-block;
+    height: 30px;
+    margin-left:7px;
+    padding: 0 13px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 32px;
+    font-size: 14px;
+    line-height: 29px;
+    color: #191919;
+    vertical-align: top;
+}
