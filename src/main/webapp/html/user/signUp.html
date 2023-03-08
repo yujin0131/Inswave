@@ -34,6 +34,7 @@
 		var SIGNUP_NUM = SIGNUP_ROOT + "/num";
 		var url = CONTEXT_PATH + SIGNUP_NUM + JSON_PATH;
 		var requestJSON = JSON.stringify({"elData":{"insNum":insNum}}); 
+		alert(requestJSON);
 		executeAjax(url, requestJSON, checkNum_click_callback);
 		
 	}

@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Black+Han+Sans&family=Hi+Melody&family=Noto+Serif+KR:wght@500&display=swap&family=Archivo+Black&family=Black+Han+Sans&family=Racing+Sans+One');
+
 body::-webkit-scrollbar {
   display: none;
 }
 
+.news_text, em{
+	font-family: 'Racing Sans One', cursive;
+	font-weight: bold;
+	font-size: 48px;
+	text-transform: initial;
+}
 article{
 	position: relative;
     margin: 0 auto;
