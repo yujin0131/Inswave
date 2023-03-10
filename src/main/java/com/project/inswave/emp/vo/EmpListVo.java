@@ -3,9 +3,10 @@ package com.project.inswave.emp.vo;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
+import com.inswave.elfw.exception.ElException;
 import com.inswave.elfw.annotation.ElDto;
 import com.inswave.elfw.annotation.ElDtoField;
+import com.inswave.elfw.annotation.ElVoField;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.inswave.elfw.log.AppLog;
 
@@ -36,30 +37,37 @@ public class EmpListVo extends com.project.inswave.cmmn.InswaveCommVO {
     @ElDtoField(logicalName = "데모사원정보", physicalName = "empVo", type = "", typeKind = "Vo", fldYn = "No", delimeterYn = "", cryptoGbn = "", cryptoKind = "", length = 0, dotLen = 0, baseValue = "", desc = "")
     private com.project.inswave.emp.vo.EmpVo empVo;
 
+    @ElVoField(physicalName = "empCnt")
     public int getEmpCnt(){
         return empVoList != null ? empVoList.size() : 0 ;
     }
 
+    @ElVoField(physicalName = "empVoList")
     public java.util.List<com.project.inswave.emp.vo.EmpVo> getEmpVoList(){
         return empVoList;
     }
 
+    @ElVoField(physicalName = "empVoList")
     public void setEmpVoList(java.util.List<com.project.inswave.emp.vo.EmpVo> empVoList){
         this.empVoList = empVoList;
     }
 
+    @ElVoField(physicalName = "deptVoList")
     public java.util.List<com.project.inswave.emp.vo.DeptVo> getDeptVoList(){
         return deptVoList;
     }
 
+    @ElVoField(physicalName = "deptVoList")
     public void setDeptVoList(java.util.List<com.project.inswave.emp.vo.DeptVo> deptVoList){
         this.deptVoList = deptVoList;
     }
 
+    @ElVoField(physicalName = "empVo")
     public com.project.inswave.emp.vo.EmpVo getEmpVo(){
         return empVo;
     }
 
+    @ElVoField(physicalName = "empVo")
     public void setEmpVo(com.project.inswave.emp.vo.EmpVo empVo){
         this.empVo = empVo;
     }
@@ -81,11 +89,11 @@ public class EmpListVo extends com.project.inswave.cmmn.InswaveCommVO {
         return true;
     }
 
-    public byte[] marshalFld() throws Exception{
+    public byte[] marshalFld() throws IOException{
         return marshalFld( com.inswave.elfw.ElConfig.getFldEncode() ); 
     }
 
-	public byte[] marshalFld(String encode) throws Exception{
+	public byte[] marshalFld(String encode) throws IOException{
     	ByteArrayOutputStream bout = new ByteArrayOutputStream();
         DataOutputStream out = null;
         try {
@@ -95,7 +103,7 @@ public class EmpListVo extends com.project.inswave.cmmn.InswaveCommVO {
                 com.project.inswave.emp.vo.EmpVo vo = (com.project.inswave.emp.vo.EmpVo)empVoList.get(i);
                 out.write( vo.marshalFld(encode) );
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
                 AppLog.error("marshalFld Error:["+ toString()+"]", e);
                 throw e;
         } finally {
@@ -113,11 +121,11 @@ public class EmpListVo extends com.project.inswave.cmmn.InswaveCommVO {
         return bout.toByteArray();
     }
 
-    public void unMarshalFld( byte[] bytes ) throws Exception{
+    public void unMarshalFld( byte[] bytes ) throws ElException{
         unMarshalFld( bytes, com.inswave.elfw.ElConfig.getFldEncode() ); 
     }
 
-    public void unMarshalFld( byte[] bytes , String encode) throws Exception{
+    public void unMarshalFld( byte[] bytes , String encode) throws ElException{
         try{ 
              this.empCnt = com.inswave.elfw.util.TypeConversionUtil.bytesToInt( bytes, _offset, 10, encode );
              _offset += 10;
@@ -133,7 +141,7 @@ public class EmpListVo extends com.project.inswave.cmmn.InswaveCommVO {
                  this.empVoList = alList;
              }
 
-        }catch(Exception e) { 
+        }catch(ElException e) { 
             String errorLine = com.inswave.elfw.util.TypeConversionUtil.getTrimmedString( bytes, 0, bytes.length, encode );
             AppLog.error("unMarshalFld Error:["+ errorLine+"]", e);
             throw e;

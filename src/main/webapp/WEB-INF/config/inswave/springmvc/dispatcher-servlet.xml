@@ -93,7 +93,7 @@
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">    	
     	<property name="order"  value="3"/>    	
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value=""/>
         <property name="suffix" value=".jsp"/>        
     </bean>
 
@@ -179,11 +179,15 @@
 
     
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter ">
+<!-- 	    <property name="webBindingInitializer">
+			<bean class="kr.or.kinfa.nfcs.m.config.KinfaWebBindInitializer"/>
+		</property> -->
 	    <property name="messageConverters">
 	        <list>
 	       		<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
-	            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
-	                <property name="supportedMediaTypes" value="application/json" />
+	       		<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	            <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" >
+	                <property name="supportedMediaTypes" value="application/json; charset=UTF-8" />
 	            </bean>
             </list>
 	    </property>
