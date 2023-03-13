@@ -162,7 +162,7 @@ p{
     letter-spacing: -.05em;
 }
 
-p[id^="rule_num"]{
+#rule_num, #rule_Id, #rule_pwd{
 	display:none;
 }
 

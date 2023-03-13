@@ -63,7 +63,7 @@ function getCookie(key) {
  * @example
  */
 function executeAjax(url, object, callback) {
-	alert(url);
+
 	$.ajax({
 		url 	    : url,
 		type        : "post",
