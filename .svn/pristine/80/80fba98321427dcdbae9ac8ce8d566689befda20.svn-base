@@ -30,8 +30,8 @@ public class SignInController {
 	private final SignInService signInService;
 	
 	@ElService(key = "sign")    
-	@RequestMapping(value = "sign")
-	@ElDescription(sub = "로그인 화면", desc = "로그인을 처리합니다.")
+	@RequestMapping(value = "sign", method = RequestMethod.POST)
+	@ElDescription(sub = "사번 중복 체크 화면", desc = "사번 중복 체크를 처리합니다.")
 	@ElValidator(errUrl = "")    
 	public String login(User user) throws Exception {
 

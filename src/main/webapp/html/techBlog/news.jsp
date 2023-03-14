@@ -26,7 +26,7 @@
 					<div class="header_InsFam">
 						<a class="header_link_InsFam">InsFam</a>
 						<div class="div_InsFam" id="div_InsFam">
-							<div class=InsFam_IO onclick="location.href='../user/signIn.html'">로그인</div>
+							<div class=InsFam_IO onclick="location.href='/InswaveApp/html/user/signIn.html'">로그인</div>
 							<div class=InsFam_write onclick="InsFam_Write();">글쓰기</div>
 						</div>
 					</div>
@@ -57,10 +57,10 @@
 							<div class="news_date">
 								<div class="news_item_date_area">
 									<div class="news_item_pastDate">
-			                            {{item[4]}}
+			                            <c:out value="${item.pastDate}" escapeXml="false"/>
 			                        </div>
 			                        <div class="news_item_date">
-			                           	<c:out value="${item.pubDate}" escapeXml="false"/>
+			                           	<c:out value="${item.postDate}" escapeXml="false"/>
 			                        </div>
 								</div>
 							</div>
