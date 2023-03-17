@@ -32,9 +32,12 @@ div[data-role=layer] {
     text-align: center;
     font-size: 0;
     z-index: 999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.layer_main_inner {
+.layer_main_inner {	
     position: relative;
     display: inline-block;
     width: 100%;

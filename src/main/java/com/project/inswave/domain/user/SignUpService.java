@@ -26,9 +26,18 @@ public class SignUpService {
 		return signUpRepository.existsByInsNum(insNum);
 	}
 	
-		public boolean existsByInsId(String insId) {
+	public boolean existsByInsId(String insId) {
 		AppLog.info("#####################100413.service####################" + insId);
 		return signUpRepository.existsByInsId(insId);
+	}
+	
+	public Long save(User user) {
+		AppLog.info("#####################100413.service####################" + user.getInsName());
+		return signUpRepository.save(user.builder()
+					.insName(user.getInsName())
+					.insNum(user.getInsNum())
+					.insId(user.getInsId())
+					.insPwd(user.getInsPwd()).build()).getInsIdx();
 	}
 
 }

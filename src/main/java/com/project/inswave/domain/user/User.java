@@ -31,17 +31,14 @@ public class User {
 	@Column(unique = true)
 	private int insNum;
 	
+	@Column
+	private String insName;
+	
 	@Column(unique = true)
 	private String insId;
 	
 	@Column
 	private String insPwd;
-	
-	@Column
-	private String insName;
-	
-	@Column
-	private int insCheck;
 
 
 	public Long getInsIdx() {
@@ -52,6 +49,10 @@ public class User {
         return this.insNum;
     }
     
+    public String getInsName() {
+    	return this.insName;
+    }
+    
     public String getInsId() {
         return this.insId;
     }
@@ -60,13 +61,7 @@ public class User {
         return this.insPwd;
     }
     
-    public String getInsName() {
-        return this.insName;
-    }
 
-    public int insCheck() {
-        return this.insCheck;
-    }
 	
 	
 }

@@ -41,7 +41,7 @@
 }
 
 .bar_navigtion {  
-	width: 25%;
+	width: 33%;
 	height: 4px;
     border-radius: 4px;
     background: #4c4c4c;
@@ -74,7 +74,7 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 
-.tit_Num, .tit_Id, .tit_Pwd {
+.tit_Num, .tit_Name, .tit_Id, .tit_Pwd {
     display: block;
     line-height: 17px;
     font-weight: 400;
@@ -82,7 +82,7 @@ input[type='number']::-webkit-inner-spin-button {
     color: #999;
 }
 
-.txt_Num, .txt_Id, .txt_Pwd{
+.txt_Num, .txt_Name, .txt_Id, .txt_Pwd{
 	display: block;
     padding-top: 6px;
     font-weight: 500;
@@ -95,10 +95,22 @@ h2{
 	margin-bottom: 47px;
 }
 
-.check_userNum, .check_userId, .check_userPwd {
+.check_group{
+	   display : flex;
+	   flex-direction : row
+}
+.check_userNum, .check_userName, .check_userId, .check_userPwd {
 	margin: 7px 0 10px;
 	padding : 10px;
 }
+
+.check_userNum, .check_userName{
+	width:40%
+}
+
+/* .check_userName, .check_userNum{
+	float: left;
+} */
 
 .box_signUp_Id, .box_signUp_Num, .box_signUp_Name, .box_signUp_Pwd {
 	position: relative;
@@ -106,6 +118,7 @@ h2{
     border: solid #ccc;
     border-width: 0 0 2px;
 }
+
 
 .box_signUp_Name{
 	margin-top: 30px;

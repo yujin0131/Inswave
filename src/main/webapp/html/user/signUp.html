@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/signUp.css"/>
+<link type="text/css" rel="stylesheet" href="/InswaveApp/css/user/layerAlert.css"/>
 <script type="text/javascript" src="/InswaveApp/js/comm/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/InswaveApp/js/comm/ElComm.js"></script>
 <script type="text/javascript">
@@ -21,7 +22,7 @@
 	
 	var SIGNUP_NUM = SIGNUP_ROOT + "/num";
 	var SIGNUP_ID = SIGNUP_ROOT + "/id";
-	var SIGNUP_PWD = SIGNUP_ROOT + "/pwd";
+	var SIGNUP_REQ = SIGNUP_ROOT + "/req";
 
 	var finNum;
 	var finName;
@@ -93,13 +94,16 @@
 			document.getElementById("rule_name").innerHTML = "이름을 입력해 주세요.";
 			document.getElementById("rule_name").style.color="#e65f3e";
 		}else{ //사원 제대로 됐을 때 다음 눌렀을 경우
-		document.getElementById("bar_navigtion").style.width="50%";
+		document.getElementById("bar_navigtion").style.width="66%";
 		document.getElementById("signUp_first").style.display="none";
 		document.getElementById("signUp_second").style.display="block";
 		
 		document.getElementById("txt_Num").innerHTML = finNum; // 등록한 사원번호 표시
 		document.getElementById("txt_Num2").innerHTML = finNum; // 등록한 사원번호 표시
-
+		
+		finName = inputName;
+		document.getElementById("txt_Name").innerHTML = finName;
+		document.getElementById("txt_Name2").innerHTML = finName;
 		}
 	}
 	
@@ -162,7 +166,7 @@
 			document.getElementById("rule_id").style.color="#e65f3e";
 
 		}else{ //사원 제대로 됐을 때 다음 눌렀을 경우
-			document.getElementById("bar_navigtion").style.width="75%";
+			document.getElementById("bar_navigtion").style.width="100%";
 			document.getElementById("signUp_second").style.display="none";
 			document.getElementById("signUp_third").style.display="block";
 			
@@ -170,10 +174,6 @@
 
 	}
 	
-	function regex_check(){
-		
-
-	}
 	
     $(function (){ //즉시실행 함수
     	$('#userPwd').keyup(function(){
@@ -241,8 +241,22 @@
         	
 		}else{
 			finPwd = document.getElementById("userPwd_check").value;
-			$("#rule_pwd_check").css('display', 'none');
+			var requestJSON = JSON.stringify(
+					{"elData":{
+						"insNum":finNum,
+						"insName":finName,
+						"insId":finId,
+						"insPwd":finPwd
+						}
+					});
+			var url = CONTEXT_PATH + SIGNUP_REQ + JSON_PATH;
+			executeAjax(url, requestJSON, signUp_callback);
 		}
+	}
+	
+	function signUp_callback(){
+			document.getElementById("layer_alert").style.display="block";
+		btn_confirm_click
 	}
 </script>
 </head>
@@ -289,10 +303,18 @@
 				<br>아이디를 입력해 주세요.
 				</h2>
 				
-				<div class="check_userNum">
-					<strong class="tit_Num">사번</strong>
-					<span class="txt_Num" id="txt_Num"></span><!-- 받을 값  -->
+				<div class="check_group">
+					<div class="check_userNum">
+						<strong class="tit_Num">사번</strong>
+						<span class="txt_Num" id="txt_Num"></span><!-- 받을 값  -->
+					</div>
+					
+					<div class="check_userName">
+						<strong class="tit_Name">이름</strong>
+						<span class="txt_Name" id="txt_Name"></span><!-- 받을 값  -->
+					</div>
 				</div>
+				
 				<div class="check_userId">
 					<strong class="tit_Id">아이디</strong>
 				</div>
@@ -316,9 +338,16 @@
 				<br>비밀번호를 등록해 주세요.
 				</h2>
 				
-				<div class="check_userNum">
-					<strong class="tit_Num">사번</strong>
-					<span class="txt_Num" id="txt_Num2"></span><!-- 받을 값  -->
+				<div class="check_group">
+					<div class="check_userNum">
+						<strong class="tit_Num">사번</strong>
+						<span class="txt_Num" id="txt_Num2"></span><!-- 받을 값  -->
+					</div>
+					
+					<div class="check_userName">
+						<strong class="tit_Name">이름</strong>
+						<span class="txt_Name" id="txt_Name2"></span><!-- 받을 값  -->
+					</div>
 				</div>
 				
 				<div class="check_userId">
@@ -354,7 +383,17 @@
 				</form>
 			</div>
 			
-			
+			<div id="layer_alert" data-role="layer" role="dialog" class="layer_alert" style="display:none;"  onclick="document.getElementById('layer_alert').style.display = 'none'">
+				<div class="layer_background"></div>
+				<div class="layer_main">
+					<div class="layer_main_inner">
+						<div class="layer_txt_msg">회원가입이 정상적으로 요청되었습니다.</br>승인은 1주일 이내에 완료됩니다.</div>
+						<div class="layer_btn">
+							<button type="button" class="layer_btn_confirm" onclick="btn_confirm_click();">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 		</div>
 	</article>

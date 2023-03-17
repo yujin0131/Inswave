@@ -78,4 +78,26 @@ public class SignUpController {
 		//return ResponseEntity.ok(item1);
 		return json.toString();
 	}
+	
+	@ElService(key = ApiUrlUtils.SIGNUP_REQ)    
+	@RequestMapping(value = ApiUrlUtils.SIGNUP_REQ, method = RequestMethod.POST)
+	@ElDescription(sub = "아이디 중복 체크 화면", desc = "아이디 중복 체크를 처리합니다.")
+	@ElValidator(errUrl = "")    
+	public String signReq(User user) throws Exception {
+
+		AppLog.info("###################login_controller signReq###################");
+	
+		JSONObject json = new JSONObject();
+		int insNum = user.getInsNum();
+		String insName = user.getInsName();
+		String insId = user.getInsId();
+		String insPwd = user.getInsPwd();
+		
+		Long id = signUpService.save(user);
+		AppLog.info("###########fin#############" + id);
+		
+		
+		//return ResponseEntity.ok(item1);
+		return json.toString();
+	}
 }

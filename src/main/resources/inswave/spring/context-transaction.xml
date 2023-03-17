@@ -28,7 +28,11 @@
         <property name="transactionManager" ref="atomikosTransactionManager"/>
         <property name="userTransaction" ref="atomikosUserTransaction"/>
     </bean>
-
+    
+	<bean id="transactionManager" 
+	      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	     <property name="dataSource" ref="dataSourceXA"/>
+	</bean>
 
 	<!-- 
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
