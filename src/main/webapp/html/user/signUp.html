@@ -24,8 +24,10 @@
 	var SIGNUP_PWD = SIGNUP_ROOT + "/pwd";
 
 	var finNum;
+	var finName;
 	var finId;
 	var finPwd;
+	var finPwd_check = false;
 	
 	var alertNum = ["사번은 6자리 수 입니다.", "이미 가입된 사번입니다.", "사번체크를 해주세요.", "유효한 사번입니다."];
 	var alertId = ["아이디를 입력해주세요.", "영문자 / 숫자 만 가능합니다.", "존재하는 아이디 입니다.", "중복체크를 해주세요", "사용 가능한 아이디 입니다."];
@@ -34,7 +36,9 @@
 		"영문자를 함께 입력해 주세요.", "숫자를 함께 입력해 주세요.", "특수문자를 함께 입력해 주세요."];
 	var regexPwd = ["", "8", "^[a-zA-Z]+$", "^[0-9]+$", "^[`~!@#$%^&*|\\\'\";:\/?]+$", 
 		"(?=.*[0-9])(?=.*[`~!@#$%^&*|\\\'\";:\/?])^[0-9`~!@#$%^&*|\\\'\";:\/?]+$", "(?=.*[a-zA-Z])(?=.*[`~!@#$%^&*|\\\'\";:\/?])^[a-zA-Z`~!@#$%^&*|\\\'\";:\/?]+$", "(?=.*[a-zA-Z])(?=.*[0-9])^[a-zA-Z0-9]+$"];
-
+	var alertPwd_check = ["비밀번호를 입력해 주세요.", "비밀번호 규칙을 지켜주세요.", "비밀번호가 일치하지 않습니다.", "비밀번호가 일치합니다."];
+	
+	
 	function check_insNum(){ // 사원입력 화면 에서 다음 버튼 눌렀을 때 
 		console.log("########## check_insNum ########");
 		//화면 및 전역변수 초기화
@@ -78,12 +82,16 @@
 		console.log("########## btn_next_insNum ########");
 		console.log("########## finNum : " , finNum);
 		var inputNum = document.getElementById("userNum").value;
+		var inputName = document.getElementById("userName").value;
 		document.getElementById("rule_num").style.display="block";
 
 		if(finNum != inputNum){ // 사원 체크 제대로 안됐을 경우
 			document.getElementById("rule_num").innerHTML = alertNum[2];
 			document.getElementById("rule_num").style.color="#e65f3e";
 			
+		}else if (inputName == "") {
+			document.getElementById("rule_name").innerHTML = "이름을 입력해 주세요.";
+			document.getElementById("rule_name").style.color="#e65f3e";
 		}else{ //사원 제대로 됐을 때 다음 눌렀을 경우
 		document.getElementById("bar_navigtion").style.width="50%";
 		document.getElementById("signUp_first").style.display="none";
@@ -157,47 +165,83 @@
 			document.getElementById("bar_navigtion").style.width="75%";
 			document.getElementById("signUp_second").style.display="none";
 			document.getElementById("signUp_third").style.display="block";
-		
+			
 		}
 
 	}
 	
 	function regex_check(){
-
-		var userPwd = document.getElementById("userPwd").value;
-		console.log("userPwd : " , userPwd);
-		document.getElementById("rule_pwd").style.display="block";
 		
-		if(userPwd==""){
-			console.log("null!!!!!!!!!!!!!!",alertPwd[0])
-			document.getElementById("rule_pwd").innerHTML = alertPwd[0];
-			return;
-		}else if (userPwd.length < 8 ){
-			console.log("8!!!!!!!!!!!!!!",alertPwd[1])
-			document.getElementById("rule_pwd").innerHTML = alertPwd[1];
-			return;
-		}
-		for(var i = 1; i < regexPwd.length; i++){
-			var rex = new RegExp(regexPwd[i],"g")
-			console.log(rex);
-			if(rex.test(userPwd)){
-				console.log("here!!!!!!!!!!!!!!!!!",i,alertPwd[i])
-				document.getElementById("rule_id").innerHTML = alertPwd[i];
-				return;
-			}
-			if(i+1 == regexPwd.length){
-				console.log("true")
-			}
-		}
 
 	}
 	
-	function next_btn_Pwd(){
-		
-		var insPwd = document.getElementById("insPwd").value;
+    $(function (){ //즉시실행 함수
+    	$('#userPwd').keyup(function(){
+    		var userPwd = document.getElementById("userPwd").value;
+    		document.getElementById("rule_pwd").style.display="block";
+    		document.getElementById("rule_pwd_check").style.display="none";
+    		finPwd_check = false;
+    		if(userPwd==""){
+    			document.getElementById("rule_pwd").innerHTML = alertPwd[0];
+    			return;
+    		}else if (userPwd.length < 8 ){
+    			document.getElementById("rule_pwd").innerHTML = alertPwd[1];
+    			return;
+    		}
+    		for(var i = 1; i < regexPwd.length; i++){
+    			var rex = new RegExp(regexPwd[i],"g")
+    			console.log(rex);
+    			if(rex.test(userPwd)){
+    				document.getElementById("rule_pwd").innerHTML = alertPwd[i];
+    				return;
+    			}
+    			if(i+1 == regexPwd.length){
+    				document.getElementById("rule_pwd").style.display="none";
+    				finPwd_check = true;
+    			}
+    		}
+    	});
+    	
+    	
+    	$('#userPwd_check').keyup(function(){
+	        var pwd1 = $("#userPwd").val();
+	        var pwd2 = $("#userPwd_check").val();
 
-		console.error("check.test(insPwd)", check.test(insPwd), insPwd);
-		if(!check.test(insPwd)){
+	  		$("#rule_pwd_check").css('display', 'block');
+            if (!finPwd_check ) { // finPwd_check : 비밀번호 규칙 안맞을 때
+            	$("#rule_pwd_check").css('color', '#e65f3e');
+            	$("#rule_pwd_check").text(alertPwd_check[1]); 
+            } else if(pwd1 != pwd2){// 비밀번호와 재입력 비밀번호 안맞을 때
+                $("#rule_pwd_check").css('color', '#e65f3e');
+            	$("#rule_pwd_check").text(alertPwd_check[2]); 
+            }else {// 비밀번호와 재입력 비밀번호 일치할 때
+                $("#rule_pwd_check").css('color', 'rgb(5 139 7)');
+            	$("#rule_pwd_check").text(alertPwd_check[3]); 
+
+	            
+	        }
+    	});
+    });
+	
+	
+	function next_btn_Pwd(){
+		var userPwd = document.getElementById("userPwd").value;
+		var userPwd_check = document.getElementById("userPwd_check").value;
+		var checkPwd = document.getElementById("rule_pwd_check")
+
+		 if(!finPwd_check){ // 비밀번호 규칙 안맞거나 재입력 안맞을 때
+			$("#rule_pwd_check").css('display', 'block');
+			$("#rule_pwd_check").css('color', '#e65f3e');
+        	$("#rule_pwd_check").text(alertPwd_check[1]); 
+        	
+		}else if (userPwd != userPwd_check){// 비밀번호 일치하지 않을 때
+			$("#rule_pwd_check").css('display', 'block');
+			$("#rule_pwd_check").css('color', '#e65f3e');
+        	$("#rule_pwd_check").text(alertPwd_check[2]); 
+        	
+		}else{
+			finPwd = document.getElementById("userPwd_check").value;
+			$("#rule_pwd_check").css('display', 'none');
 		}
 	}
 </script>
@@ -216,7 +260,7 @@
 			
 			<div id="signUp_first">
 				<h2 class="text_signUp_NUM">인스웨이브시스템즈 본인의
-				<br>사번을 입력해 주세요.
+				<br>사번과 이름을 입력해 주세요.
 				</h2>
 				
 				<form>
@@ -228,6 +272,12 @@
 						</div>
 					</div>
 					<p id="rule_num" role="alert"></p>
+					
+					<div class="box_signUp_Name">
+						<input type="text" class="userName" id="userName" placeholder="이름 입력" autocomplete="off">
+					</div>
+					<p id="rule_name" role="alert"></p>
+					
 					<div class="box_next">
 						<button type="button" class="next_btn_Num" onclick="btn_next_insNum();">다음</button>
 					</div>
@@ -286,20 +336,20 @@
 							<button type="button" class="btn_clear" >입력 내용 지우기</button>
 						</div>
 					</div>
-						<p class="rule_pwd" role="alert"></p>
+						<p class="rule_pwd" id="rule_pwd" role="alert"></p>
 						
 					
 					<div class="box_signUp_Pwd">
-						<input type="text" class="userPwd_check" id="userPwd_check" placeholder="비밀번호 재입력"  maxlength="21" autocomplete="off" onclick="regex_check();">
+						<input type="text" class="userPwd_check" id="userPwd_check" placeholder="비밀번호 재입력"  maxlength="21" autocomplete="off">
 						<div class="box_btn">
 							<button type="button" class="btn_clear" style="">입력 내용 지우기</button>
 						</div>
 					</div>
-						<p class="rule_pwd" role="alert"></p>
+						<p class="rule_pwd_check" id="rule_pwd_check" role="alert"></p>
 					
 					
 					<div class="box_next">
-						<button type="button" class="next_btn_Pwd">다음</button>
+						<button type="button" class="next_btn_Pwd" onclick="next_btn_Pwd();">가입하기</button>
 					</div>
 				</form>
 			</div>
