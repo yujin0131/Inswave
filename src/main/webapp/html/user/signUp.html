@@ -256,12 +256,17 @@
 	
 	function signUp_callback(){
 			document.getElementById("layer_alert").style.display="block";
-		btn_confirm_click
+		btn_confirm_click();
 	}
+	
+	function btn_confirm_click(){
+		location.href = '/InswaveApp/html/techBlog/main.html';
+	}
+	
 </script>
 </head>
 <body>
-	<div class="inswave" onclick="location.href='../techBlog/main.html'">
+	<div class="inswave" onclick="location.href='/InswaveApp/html/techBlog/main.html'">
 		<img src="/InswaveApp/images/techBlog/InswaveLogoText.png"></img>
 	</div>
 	<article class="mainContent">

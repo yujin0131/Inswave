@@ -3,7 +3,6 @@ package com.project.inswave.domain.user.controller;
 import javax.annotation.Resource;
 
 import org.json.JSONObject;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,24 +33,10 @@ public class SignUpController {
 	@ElDescription(sub = "사번 중복 체크 화면", desc = "사번 중복 체크를 처리합니다.")
 	@ElValidator(errUrl = "")    
 	public String insNum(User user) throws Exception {
-
-		AppLog.info("###################login_controller insNum###################");
-	
-		JSONObject json = new JSONObject();
+		
 		int insNum = user.getInsNum();
-		boolean exists = signUpService.existsByInsNum(insNum);
-		AppLog.info("###########insNum : " + insNum + " exists : " + exists);
-		
-		if(exists){
-			json.put("resCode", "fail"); // 이미 존재한 사원 resCode 추후 변경
-			
-		}else{
-			json.put("resCode", "succ"); // 이미 존재한 사원 resCode 추후 변경
-			json.put("insNum", insNum);
-		}
-		
 		//return ResponseEntity.ok(item1);
-		return json.toString();
+		return signUpService.existsByInsNum(insNum);
 	}
 	
 	@ElService(key = ApiUrlUtils.SIGNUP_ID)    
@@ -60,44 +45,17 @@ public class SignUpController {
 	@ElValidator(errUrl = "")    
 	public String insId(User user) throws Exception {
 
-		AppLog.info("###################login_controller insId###################");
-	
-		JSONObject json = new JSONObject();
 		String insId = user.getInsId();
-		boolean exists = signUpService.existsByInsId(insId);
-		AppLog.info("###########insNum : " + insId + " exists : " + exists);
-		
-		if(exists){
-			json.put("resCode", "fail"); // 이미 존재한 사원 resCode 추후 변경
-			
-		}else{
-			json.put("resCode", "succ"); // 이미 존재한 사원 resCode 추후 변경
-			json.put("insId", insId);
-		}
-		
-		//return ResponseEntity.ok(item1);
-		return json.toString();
+		return signUpService.existsByInsId(insId);
 	}
 	
 	@ElService(key = ApiUrlUtils.SIGNUP_REQ)    
 	@RequestMapping(value = ApiUrlUtils.SIGNUP_REQ, method = RequestMethod.POST)
-	@ElDescription(sub = "아이디 중복 체크 화면", desc = "아이디 중복 체크를 처리합니다.")
+	@ElDescription(sub = "회원가입 화면", desc = "입력된 정보들로 회원가입을 진행합니다.")
 	@ElValidator(errUrl = "")    
-	public String signReq(User user) throws Exception {
-
-		AppLog.info("###################login_controller signReq###################");
-	
-		JSONObject json = new JSONObject();
-		int insNum = user.getInsNum();
-		String insName = user.getInsName();
-		String insId = user.getInsId();
-		String insPwd = user.getInsPwd();
-		
-		Long id = signUpService.save(user);
-		AppLog.info("###########fin#############" + id);
-		
+	public String signReq(User User) throws Exception {
 		
 		//return ResponseEntity.ok(item1);
-		return json.toString();
+		return signUpService.save(User);
 	}
 }

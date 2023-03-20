@@ -2,6 +2,7 @@ package com.project.inswave.domain.user;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
@@ -21,23 +22,56 @@ public class SignUpService {
 	@Resource(name="SignUpRepository")
 	private final SignUpRepository signUpRepository;
 
-	public boolean existsByInsNum(int insNum) {
-		AppLog.info("#####################100413.service####################" + insNum);
-		return signUpRepository.existsByInsNum(insNum);
+	public String existsByInsNum(int insNum) {
+		
+		JSONObject json = new JSONObject();
+		boolean exists = signUpRepository.existsByInsNum(insNum);
+		
+		if(exists){
+			json.put("resCode", "fail"); // 이미 존재한 사원 resCode 추후 변경
+			
+		}else{
+			json.put("resCode", "succ"); // 이미 존재한 사원 resCode 추후 변경
+			json.put("insNum", insNum);
+		}
+		
+		return json.toString();
 	}
 	
-	public boolean existsByInsId(String insId) {
-		AppLog.info("#####################100413.service####################" + insId);
-		return signUpRepository.existsByInsId(insId);
+	public String existsByInsId(String insId) {
+		
+		JSONObject json = new JSONObject();
+		boolean exists = signUpRepository.existsByInsId(insId);
+		
+		if(exists){
+			json.put("resCode", "fail"); // 이미 존재한 사원 resCode 추후 변경
+			
+		}else{
+			json.put("resCode", "succ"); // 이미 존재한 사원 resCode 추후 변경
+			json.put("insId", insId);
+		}
+		
+		//return ResponseEntity.ok(item1);
+		return json.toString();
+
 	}
 	
-	public Long save(User user) {
-		AppLog.info("#####################100413.service####################" + user.getInsName());
-		return signUpRepository.save(user.builder()
-					.insName(user.getInsName())
-					.insNum(user.getInsNum())
-					.insId(user.getInsId())
-					.insPwd(user.getInsPwd()).build()).getInsIdx();
+	public String save(User User) {
+		AppLog.info("#####################100413.service####################" + User.getInsName());
+		
+		JSONObject json = new JSONObject();
+		
+		int insNum = User.getInsNum();
+		String insName = User.getInsName();
+		String insId = User.getInsId();
+		String insPwd = User.getInsPwd();
+		AppLog.info("insIdx : " + User.getInsIdx() + " insNum : " + insNum + " insName : " + insName  + " insId : " + insId + " insPwd : " + insPwd );
+		
+		User id = signUpRepository.save(User);
+		
+		AppLog.info("###########fin#############" + id.getInsName() + " idx : " + id.getInsIdx());
+		
+		return id.getInsName();
 	}
 
 }
