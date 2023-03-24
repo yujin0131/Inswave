@@ -7,6 +7,7 @@ public class ApiUrlUtils {
 	public static final String SIGNUP_ROOT = ROOT + "/signup";
 	public static final String SIGNUP_NUM = SIGNUP_ROOT + "/num";
 	public static final String SIGNUP_ID = SIGNUP_ROOT + "/id";
+	public static final String SIGNUP_REQ = SIGNUP_ROOT + "/req";
 	
 	public static final String NEWS_ROOT = ROOT + "/news";
 	

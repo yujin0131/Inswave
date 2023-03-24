@@ -20,5 +20,7 @@ public interface SignUpRepository extends JpaRepository<User, Long> {
 	
 	@Query("select count(e)>0 from User e where insId=:insId")
 	boolean existsByInsId(@Param("insId") String insId); 
+	
+	
 
 }
